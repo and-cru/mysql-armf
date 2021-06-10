@@ -5,7 +5,7 @@ RUN groupadd -r mysql && useradd -r -g mysql mysql
 
 RUN mkdir /docker-entrypoint-initdb.d
 
-RUN apt-get update && apt-get install -y --force-yes --no-install-recommends gnupg gnupg-curl dirmngr && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --force-yes --no-install-recommends gnupg gnupg-curl gpgconf dirmngr && rm -rf /var/lib/apt/lists/*
 
 ENV GOSU_VERSION 1.12
 ENV ARCH armhf
