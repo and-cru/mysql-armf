@@ -10,7 +10,7 @@ RUN mkdir /docker-entrypoint-initdb.d
 # File::Copy
 # Sys::Hostname
 # Data::Dumper
-RUN apt-get update && apt-get install -y perl --no-install-recommends && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y apt-transport-https perl --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
 # mysqld: error while loading shared libraries: libaio.so.1: cannot open shared object file: No such file or directory
 RUN apt-get update && apt-get install -y libaio1 pwgen && rm -rf /var/lib/apt/lists/*
