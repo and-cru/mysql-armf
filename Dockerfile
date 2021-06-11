@@ -5,7 +5,7 @@ RUN groupadd -r mysql && useradd -r -g mysql mysql
 
 RUN mkdir /docker-entrypoint-initdb.d
 
-RUN apt-get update && apt-get install -y --force-yes --no-install-recommends gnupg gnupg-curl gnupg2 dirmngr && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends gnupg dirmngr && rm -rf /var/lib/apt/lists/*
 
 ENV GOSU_VERSION 1.12
 ENV ARCH armhf
@@ -14,7 +14,7 @@ ENV ARCH armhf
 RUN set -eux; \
 	savedAptMark="$(apt-mark showmanual)"; \
 	apt-get update; \
-	apt-get install -y --force-yes --no-install-recommends ca-certificates wget; \
+	apt-get install -y --no-install-recommends ca-certificates wget; \
 	rm -rf /var/lib/apt/lists/*; \
 	wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$ARCH"; \
 	wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$ARCH.asc"; \
@@ -32,7 +32,7 @@ RUN set -eux; \
 
 # ENV PATH $PATH:/usr/local/mysql/bin:/usr/local/mysql/scripts
 
-RUN apt-get update && apt-get install -y --force-yes --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
 # for MYSQL_RANDOM_ROOT_PASSWORD
 		pwgen \
 # for mysql_ssl_rsa_setup
@@ -71,7 +71,7 @@ RUN { \
 		echo mysql-community-server mysql-community-server/remove-test-db select false; \
 	} | debconf-set-selections \
 	&& apt-get update \
-	&& apt-get install -y --force-yes \
+	&& apt-get install -y \
 		mysql-server="${MYSQL_VERSION}" \
 # comment out a few problematic configuration values
 	&& find /etc/mysql/ -name '*.cnf' -print0 \
