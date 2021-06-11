@@ -58,9 +58,9 @@ RUN set -ex; \
 	apt-key list > /dev/null
 
 ENV MYSQL_MAJOR 5.7
-ENV MYSQL_VERSION 5.7.33-1ubuntu18.04
+ENV MYSQL_VERSION 5.7.34-1ubuntu18.04
 
-RUN echo 'deb http://repo.mysql.com/apt/ubuntu/ buster mysql-5.7' > /etc/apt/sources.list.d/mysql.list
+RUN echo 'deb http://repo.mysql.com/apt/ubuntu/ bionic mysql-5.7' > /etc/apt/sources.list.d/mysql.list
 
 # the "/var/lib/mysql" stuff here is because the mysql-server postinst doesn't have an explicit way to disable the mysql_install_db codepath besides having a database already "configured" (ie, stuff in /var/lib/mysql/mysql)
 # also, we set debconf keys to make APT a little quieter
